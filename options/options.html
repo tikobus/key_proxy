@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="options.css" />
+    <title>KeyProxy - 设置</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>KeyProxy 设置</h1>
+
+      <!-- 代理服务器 -->
+      <section class="card">
+        <h2>代理服务器</h2>
+        <div class="field">
+          <label for="proxyType">类型</label>
+          <select id="proxyType">
+            <option value="http">HTTP</option>
+            <option value="https">HTTPS</option>
+            <option value="socks">SOCKS5</option>
+            <option value="socks4">SOCKS4</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="proxyHost">主机</label>
+          <input type="text" id="proxyHost" placeholder="127.0.0.1" />
+        </div>
+        <div class="field">
+          <label for="proxyPort">端口</label>
+          <input type="number" id="proxyPort" min="1" max="65535" placeholder="7890" />
+        </div>
+        <div class="field">
+          <label for="proxyUser">用户名（可选）</label>
+          <input type="text" id="proxyUser" autocomplete="off" />
+        </div>
+        <div class="field">
+          <label for="proxyPass">密码（可选）</label>
+          <input type="password" id="proxyPass" autocomplete="off" />
+        </div>
+      </section>
+
+      <!-- 默认策略 -->
+      <section class="card">
+        <h2>默认策略</h2>
+        <p class="hint">域名既不在白名单也不在黑名单时的处理方式。</p>
+        <div class="field">
+          <label>
+            <input type="radio" name="defaultPolicy" value="direct" /> 默认直连
+          </label>
+          <label>
+            <input type="radio" name="defaultPolicy" value="proxy" /> 默认代理
+          </label>
+        </div>
+      </section>
+
+      <!-- 白名单 -->
+      <section class="card">
+        <h2>白名单关键字</h2>
+        <p class="hint">域名包含其中任一关键字 -> <b>直连</b>（优先级最高）。每行一个关键字。</p>
+        <textarea id="whitelist" rows="6" placeholder="例如：&#10;internal&#10;gov.cn"></textarea>
+      </section>
+
+      <!-- 黑名单 -->
+      <section class="card">
+        <h2>黑名单关键字</h2>
+        <p class="hint">域名包含其中任一关键字 -> <b>走代理</b>。每行一个关键字。</p>
+        <textarea id="blacklist" rows="6" placeholder="例如：&#10;google&#10;twitter"></textarea>
+      </section>
+
+      <div class="actions">
+        <button type="button" id="save" class="btn primary">保存</button>
+        <button type="button" id="reset" class="btn">重置为默认</button>
+        <span id="message" class="message"></span>
+      </div>
+    </div>
+
+    <script src="../lib/matcher.js"></script>
+    <script src="../lib/storage.js"></script>
+    <script src="options.js"></script>
+  </body>
+</html>

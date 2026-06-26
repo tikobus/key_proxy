@@ -1,0 +1,42 @@
+{
+  "manifest_version": 2,
+  "name": "KeyProxy",
+  "version": "1.0.0",
+  "description": "基于白名单/黑名单关键字自动切换代理或直连的 Firefox 代理插件。",
+  "default_locale": "zh_CN",
+  "permissions": [
+    "proxy",
+    "storage",
+    "webRequest",
+    "<all_urls>"
+  ],
+  "background": {
+    "scripts": [
+      "lib/matcher.js",
+      "lib/storage.js",
+      "background/proxy-handler.js"
+    ]
+  },
+  "browser_action": {
+    "default_title": "KeyProxy",
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "48": "icons/icon.svg",
+      "96": "icons/icon.svg"
+    }
+  },
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": true
+  },
+  "icons": {
+    "48": "icons/icon.svg",
+    "96": "icons/icon.svg"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "keyproxy@example.com",
+      "strict_min_version": "91.0"
+    }
+  }
+}

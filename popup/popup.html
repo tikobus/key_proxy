@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="popup.css" />
+    <title>KeyProxy</title>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <h1>KeyProxy</h1>
+      </header>
+
+      <!-- 总开关 -->
+      <div class="row switch-row">
+        <span class="label">启用代理</span>
+        <label class="switch">
+          <input type="checkbox" id="enabled" />
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <!-- 默认策略 -->
+      <div class="row">
+        <span class="label">默认策略</span>
+        <div class="segmented" id="defaultPolicy">
+          <button type="button" data-value="direct" class="seg-btn">直连</button>
+          <button type="button" data-value="proxy" class="seg-btn">代理</button>
+        </div>
+      </div>
+
+      <!-- 代理服务器状态 -->
+      <div class="status" id="proxyStatus">代理服务器：未配置</div>
+
+      <footer class="footer">
+        <button type="button" id="openOptions" class="link-btn">管理规则与服务器</button>
+      </footer>
+    </div>
+
+    <script src="../lib/matcher.js"></script>
+    <script src="../lib/storage.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>

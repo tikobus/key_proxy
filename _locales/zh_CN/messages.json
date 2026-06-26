@@ -1,0 +1,8 @@
+{
+  "extensionName": {
+    "message": "KeyProxy"
+  },
+  "extensionDescription": {
+    "message": "基于白名单/黑名单关键字自动切换代理或直连的 Firefox 代理插件。"
+  }
+}
