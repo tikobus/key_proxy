@@ -17,9 +17,10 @@ async function init() {
  * @param {object} requestInfo - 包含请求 url 等信息。
  */
 function handleRequest(requestInfo) {
-  // 配置未就绪或总开关关闭：一律直连。
+  // 配置未就绪或总开关关闭：不干预，返回 undefined 让浏览器走自身默认设置。
+  // 注意：不能返回 { type: "direct" }，否则会强制直连、反而覆盖用户的浏览器内置代理。
   if (!config || !config.enabled) {
-    return { type: "direct" };
+    return undefined;
   }
 
   let host;
@@ -80,12 +81,17 @@ function handleAuthRequired(details) {
 // 注册代理决策监听器。
 browser.proxy.onRequest.addListener(handleRequest, { urls: ["<all_urls>"] });
 
-// 注册代理认证监听器。
-browser.webRequest.onAuthRequired.addListener(
-  handleAuthRequired,
-  { urls: ["<all_urls>"] },
-  ["blocking"]
-);
+// 注册代理认证监听器。blocking 需要 manifest 声明 webRequestBlocking 权限；
+// 用 try/catch 兜底，避免此处注册失败时中断后续的 init() 与其它监听器注册。
+try {
+  browser.webRequest.onAuthRequired.addListener(
+    handleAuthRequired,
+    { urls: ["<all_urls>"] },
+    ["blocking"]
+  );
+} catch (e) {
+  console.error("[proxy] onAuthRequired 注册失败:", e);
+}
 
 // 监听存储变化，热更新内存缓存（popup/options 修改配置后立即生效）。
 browser.storage.onChanged.addListener((changes, area) => {
