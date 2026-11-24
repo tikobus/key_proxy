@@ -12,7 +12,7 @@ body {
 }
 
 .container {
-  max-width: 640px;
+  max-width: 800px;
   margin: 0 auto;
 }
 
@@ -76,6 +76,127 @@ textarea {
   font-size: 14px;
   font-family: "SF Mono", Consolas, monospace;
   resize: vertical;
+}
+
+/* 代理服务器：左列表 + 右表单 */
+.proxy-layout {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.proxy-list-pane {
+  flex: 1;
+  min-width: 0;
+}
+
+.proxy-list {
+  list-style: none;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 10px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.proxy-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 12px;
+  border-bottom: 1px solid #f0f0f0;
+  cursor: pointer;
+  border-left: 3px solid transparent;
+}
+.proxy-item:last-child {
+  border-bottom: none;
+}
+.proxy-item:hover {
+  background: #f7f9f7;
+}
+.proxy-item.editing {
+  background: #f0f9f2;
+  border-left-color: #74b16f;
+}
+.proxy-item.active {
+  border-left-color: #2b8a3e;
+}
+
+.proxy-item-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.proxy-name {
+  font-size: 14px;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.proxy-addr {
+  font-size: 12px;
+  color: #888;
+  font-family: "SF Mono", Consolas, monospace;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.badge {
+  flex-shrink: 0;
+  font-size: 11px;
+  background: #2b8a3e;
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+
+.proxy-empty {
+  padding: 16px 12px;
+  font-size: 13px;
+  color: #999;
+  text-align: center;
+}
+
+.proxy-list-actions {
+  display: flex;
+  gap: 8px;
+}
+.proxy-list-actions .btn {
+  flex: 1;
+  padding: 7px 0;
+}
+
+.btn.danger {
+  color: #c92a2a;
+  border-color: #e6b3b3;
+}
+.btn.danger:hover {
+  background: #fdf0f0;
+}
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.proxy-form {
+  flex: 1;
+  min-width: 0;
+}
+.proxy-form:has(input:disabled) {
+  opacity: 0.6;
+}
+
+/* 响应式：窄屏时上下堆叠 */
+@media (max-width: 560px) {
+  .proxy-layout {
+    flex-direction: column;
+  }
 }
 
 .actions {

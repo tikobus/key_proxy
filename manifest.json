@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
   "name": "KeyProxy",
-  "version": "1.0.4",
-  "description": "基于白名单/黑名单关键字自动切换代理或直连的 Firefox 代理插件。",
+  "version": "1.1.0",
+  "description": "基于白名单/黑名单关键字自动切换代理或直连的 Firefox 代理插件，支持多代理服务器一键切换。",
   "default_locale": "zh_CN",
   "permissions": [
     "proxy",

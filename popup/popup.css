@@ -90,6 +90,75 @@ body {
   color: #fff;
 }
 
+/* 代理服务器切换列表 */
+.proxy-switcher-row {
+  margin-bottom: 8px;
+}
+.proxy-switcher {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 10px;
+  max-height: 180px;
+  overflow-y: auto;
+}
+.proxy-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  padding: 7px 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+  text-align: left;
+}
+.proxy-item:hover {
+  background: #f7f9f7;
+}
+.proxy-item.active {
+  border-color: #2b8a3e;
+  background: #f0f9f2;
+}
+.proxy-item-main {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+.proxy-name {
+  font-size: 13px;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.proxy-addr {
+  font-size: 11px;
+  color: #888;
+  font-family: "SF Mono", Consolas, monospace;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.proxy-item .dot {
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ccc;
+}
+.proxy-item.active .dot {
+  background: #2b8a3e;
+}
+.proxy-empty {
+  font-size: 12px;
+  color: #999;
+  padding: 6px 0;
+}
+
 .status {
   font-size: 12px;
   color: #777;

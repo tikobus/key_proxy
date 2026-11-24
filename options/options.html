@@ -13,30 +13,46 @@
       <!-- 代理服务器 -->
       <section class="card">
         <h2>代理服务器</h2>
-        <div class="field">
-          <label for="proxyType">类型</label>
-          <select id="proxyType">
-            <option value="http">HTTP</option>
-            <option value="https">HTTPS</option>
-            <option value="socks">SOCKS5</option>
-            <option value="socks4">SOCKS4</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="proxyHost">主机</label>
-          <input type="text" id="proxyHost" placeholder="127.0.0.1" />
-        </div>
-        <div class="field">
-          <label for="proxyPort">端口</label>
-          <input type="number" id="proxyPort" min="1" max="65535" placeholder="7890" />
-        </div>
-        <div class="field">
-          <label for="proxyUser">用户名（可选）</label>
-          <input type="text" id="proxyUser" autocomplete="off" />
-        </div>
-        <div class="field">
-          <label for="proxyPass">密码（可选）</label>
-          <input type="password" id="proxyPass" autocomplete="off" />
+        <p class="hint">管理多个代理服务器；点击列表项即可<b>一键切换</b>当前使用的服务器（立即生效，无需保存）。</p>
+        <div class="proxy-layout">
+          <div class="proxy-list-pane">
+            <ul id="proxyList" class="proxy-list"></ul>
+            <div class="proxy-list-actions">
+              <button type="button" id="addProxy" class="btn">新增</button>
+              <button type="button" id="deleteProxy" class="btn danger">删除</button>
+            </div>
+          </div>
+          <div class="proxy-form">
+            <div class="field">
+              <label for="proxyName">名称</label>
+              <input type="text" id="proxyName" placeholder="例如：公司线路" />
+            </div>
+            <div class="field">
+              <label for="proxyType">类型</label>
+              <select id="proxyType">
+                <option value="socks">SOCKS5</option>
+                <option value="http">HTTP</option>
+                <option value="https">HTTPS</option>
+                <option value="socks4">SOCKS4</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="proxyHost">主机</label>
+              <input type="text" id="proxyHost" placeholder="127.0.0.1" />
+            </div>
+            <div class="field">
+              <label for="proxyPort">端口</label>
+              <input type="number" id="proxyPort" min="1" max="65535" placeholder="1080" />
+            </div>
+            <div class="field">
+              <label for="proxyUser">用户名（可选）</label>
+              <input type="text" id="proxyUser" autocomplete="off" />
+            </div>
+            <div class="field">
+              <label for="proxyPass">密码（可选）</label>
+              <input type="password" id="proxyPass" autocomplete="off" />
+            </div>
+          </div>
         </div>
       </section>
 

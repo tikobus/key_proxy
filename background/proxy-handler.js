@@ -35,12 +35,17 @@ function handleRequest(requestInfo) {
     return { type: "direct" };
   }
 
-  return buildProxyInfo(config.proxy);
+  // 未选择任何服务器时退化为直连，避免请求失败。
+  const proxy = getActiveProxy(config);
+  if (!proxy) {
+    return { type: "direct" };
+  }
+  return buildProxyInfo(proxy);
 }
 
 /**
  * 根据代理配置构造 proxy.onRequest 所需的返回对象。
- * @param {object} proxy
+ * @param {object} proxy - 单个代理服务器条目。
  */
 function buildProxyInfo(proxy) {
   const info = {
@@ -71,9 +76,9 @@ function handleAuthRequired(details) {
   if (!config || !config.enabled || !details.isProxy) {
     return {};
   }
-  const { username, password } = config.proxy;
-  if (username) {
-    return { authCredentials: { username, password } };
+  const proxy = getActiveProxy(config);
+  if (proxy && proxy.username) {
+    return { authCredentials: { username: proxy.username, password: proxy.password } };
   }
   return {};
 }
